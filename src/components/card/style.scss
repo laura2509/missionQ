@@ -1,0 +1,32 @@
+@import '../../styles/colors';
+
+.cardCustom {
+    margin: 10px 0;
+}
+
+.footerLeft {
+    float: left;
+}
+
+.footerRight {
+    float: right;
+}
+
+.comment {   
+    position: absolute;
+    top: -22px;
+    right: -10px;
+    font-size: 35px;
+    text-align: center;
+
+    .icon {
+        color: $red;
+    }
+
+    .number {
+        color:white;
+        margin-top: -37px;
+        font-size: 16px;
+    }
+    
+}

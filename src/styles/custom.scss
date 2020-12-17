@@ -1,0 +1,17 @@
+// Overrides of Bootstrap styles
+@import 'colors';
+
+body {
+    padding-top: 5rem;
+}
+
+.app-content {
+    padding: 3rem 1.5rem;
+    // text-align: center;
+}
+
+.bg-custom{
+    background-color: $navbar-blue-color;
+}
+
+@import '~bootstrap-icons/font/bootstrap-icons';
