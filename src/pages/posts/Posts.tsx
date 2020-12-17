@@ -13,7 +13,7 @@ interface Props {
 
 const Posts: FC<Props> = (props: Props): JSX.Element => {
     const [postsData, setPostsData] = useState<Array<PostDTO>>([]);
-    const [filteredPostsData, setFilteredPostsData] = useState([]);
+    const [filteredPostsData, setFilteredPostsData] = useState<Array<PostDTO>>([]);
     const [usersData, setUsersData] = useState<Array<UserDTO>>([]);
     const [commentsData, setCommentsData] = useState<Array<CommentDTO>>([]);
     const [searchString, setSearchString] = useState('');
@@ -59,10 +59,10 @@ const Posts: FC<Props> = (props: Props): JSX.Element => {
     useEffect(() => {
 
         if (postsData && postsData.length > 0) {
-            const data = JSON.parse(JSON.stringify(postsData));
+            const data: Array<PostDTO> = JSON.parse(JSON.stringify(postsData));
 
             // map users data with posts data
-            data.map((post: PostDTO) => {
+            data.map((post) => {
                 const findUserData = usersData.find(({ id }) => id === post.userId);
 
                 if (findUserData) {
@@ -71,11 +71,11 @@ const Posts: FC<Props> = (props: Props): JSX.Element => {
                 return post;
             });
 
-            const filteredData = data.filter((item: any) => {
+            const filteredData = data.filter((item) => {
                 if (item.user) {
-                    return item.user.name.toLowerCase().includes(searchString.toLowerCase());
+                    return item.user?.name?.toLowerCase().includes(searchString.toLowerCase());
                 } else return item;
-                
+
             });
             setFilteredPostsData(filteredData);
         }
@@ -128,17 +128,15 @@ const Posts: FC<Props> = (props: Props): JSX.Element => {
     return (
         <div>
             <h4>Posts</h4>
-            <form className="form-inline my-2 my-lg-0">
-                <input className="form-control mr-sm-2" type="text" placeholder="Search by name"
-                    value={searchString}
-                    onChange={onSearch}
-                />            
-            </form>
+            <input style={{width: '20%'}} className="form-control mr-sm-2" type="text" placeholder="Search by name"
+                value={searchString}
+                onChange={onSearch}
+            />
             {posts}
         </div >
     );
 
 };
 
-Posts.displayName= 'Posts Component';
+Posts.displayName = 'Posts Component';
 export default Posts;
